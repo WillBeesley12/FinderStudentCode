@@ -1,6 +1,5 @@
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.HashMap;
 /**
  * Finder
  * A puzzle written by Zach Blick
@@ -12,28 +11,21 @@ import java.util.HashMap;
 
 public class Finder {
 
-    private static final String INVALID = "INVALID KEY";
+    private static Beesley data;
 
     public Finder() {
-        data = new HashMap<String, String>();
+        data = new Beesley();
     }
-
-    HashMap<String, String> data;
-
     public void buildTable(BufferedReader br, int keyCol, int valCol) throws IOException {
         String line;
         while ((line = br.readLine()) != null) {
             String[] stuff = line.split(",");
-            data.put(stuff[keyCol], stuff[valCol]);
+            data.insert(stuff[keyCol], stuff[valCol]);
         }
         br.close();
     }
 
     public String query(String key){
-        String answer = data.get(key);
-        if (answer == null) {
-            return INVALID;
-        }
         return data.get(key);
     }
 }
